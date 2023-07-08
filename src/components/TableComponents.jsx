@@ -5,6 +5,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+// import data from "../data/data";
 
 const pagination = paginationFactory({
   page: 1,
@@ -169,22 +170,18 @@ const TableComponents = (props) => {
   const handleDelete = (id) => {
     console.log(id);
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Apakah kamu yakin?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#EF4444",
       cancelButtonColor: "#4F46E5",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya, hapus saja!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // e.preventDefault();
         const newData = dataMhs.filter((item) => item.id !== id);
         console.log(dataMhs);
         setDataMhs(newData);
         Swal.fire("Terhapus", "Data berhasil dihapus", "success");
-        // const newDataMhs = newDataMhss.setDataMhs(newData);
-        // return newDataMhs;
       }
     });
   };

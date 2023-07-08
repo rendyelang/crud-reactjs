@@ -81,7 +81,9 @@ const EditUserContainer = () => {
     <div className="container py-10">
       <BackComponents />
       <p className="text-4xl font-medium">Edit User</p>
-      <p>{id}</p>
+      <p className="text-lg">
+        Penguji bisa mencoba satu kondisi di sini yaitu cobalah untuk submit form dengan tidak mengisi salah satu kolom / semua kolom input. <br /> Maka form tidak akan bisa tersubmit dan akan menampilkan alert.
+      </p>
       <form onSubmit={handleSubmit}>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-x-9 mb-2">
           <div className="flex flex-col mb-4">
@@ -98,7 +100,7 @@ const EditUserContainer = () => {
           </div>
           <div className="flex flex-col">
             <label className="mb-2">No HP :</label>
-            <input className="border-2 py-2 px-3 rounded-md" type="text" name={"no"} value={forms.no} onChange={handleChange} />
+            <input className="border-2 py-2 px-3 rounded-md" type="number" name={"no"} value={forms.no} onChange={handleChange} />
           </div>
         </div>
         <button className="bg-blue-600 text-white text-sm hover:bg-blue-800 rounded-md py-2 px-3 mb-3">
