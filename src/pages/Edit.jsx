@@ -5,8 +5,9 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import data from "../data/data";
 import Swal from "sweetalert2";
+import JumbotronComponents from "../components/JumbotronComponents";
 
-const EditUserContainer = () => {
+const EditUserContainer = (props) => {
   const [forms, setForms] = useState({
     nama: "",
     umur: "",
@@ -21,8 +22,8 @@ const EditUserContainer = () => {
       title: "Data berhasil diubah!",
       icon: "success",
       showCancelButton: false,
-      confirmButtonColor: "#EF4444",
-      confirmButtonText: "okey",
+      confirmButtonColor: "#6633FF",
+      confirmButtonText: "OK",
       timer: 5000,
     });
   };
@@ -31,8 +32,8 @@ const EditUserContainer = () => {
       title: "Semua data harus diisi!",
       icon: "warning",
       showCancelButton: false,
-      confirmButtonColor: "#EF4444",
-      confirmButtonText: "okey",
+      confirmButtonColor: "#6633FF",
+      confirmButtonText: "OK",
       timer: 5000,
     });
   };
@@ -78,35 +79,38 @@ const EditUserContainer = () => {
   };
 
   return (
-    <div className="container py-10">
-      <BackComponents />
-      <p className="text-4xl font-medium">Edit User</p>
-      <p className="text-lg">
-        Penguji bisa mencoba satu kondisi di sini yaitu cobalah untuk submit form dengan tidak mengisi salah satu kolom / semua kolom input. <br /> Maka form tidak akan bisa tersubmit dan akan menampilkan alert.
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-x-9 mb-2">
-          <div className="flex flex-col mb-4">
-            <label className="mb-2">Nama :</label>
-            <input className="border-2 py-2 px-3 rounded-md" type="text" name={"nama"} value={forms.nama} onChange={handleChange} />
+    <div>
+      <JumbotronComponents title={props.title} />
+      <div className="container py-10">
+        <BackComponents />
+        <p className="text-4xl font-medium">Edit User</p>
+        <p className="text-lg">
+          Penguji bisa mencoba satu kondisi di sini yaitu cobalah untuk submit form dengan tidak mengisi salah satu kolom / semua kolom input. <br /> Maka form tidak akan bisa tersubmit dan akan menampilkan alert.
+        </p>
+        <form onSubmit={handleSubmit}>
+          <div className="grid lg:grid-cols-2 grid-cols-1 gap-x-9 mb-2">
+            <div className="flex flex-col mb-4">
+              <label className="mb-2">Nama :</label>
+              <input className="border-2 py-2 px-3 rounded-md" type="text" name={"nama"} value={forms.nama} onChange={handleChange} />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-2">Umur :</label>
+              <input className="border-2 py-2 px-3 rounded-md" type="number" name={"umur"} value={forms.umur} onChange={handleChange} />
+            </div>
+            <div className="flex flex-col mb-4">
+              <label className="mb-2">Alamat :</label>
+              <input className="border-2 py-2 px-3 rounded-md" type="text" name={"alamat"} value={forms.alamat} onChange={handleChange} />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-2">No HP :</label>
+              <input className="border-2 py-2 px-3 rounded-md" type="number" name={"no"} value={forms.no} onChange={handleChange} />
+            </div>
           </div>
-          <div className="flex flex-col">
-            <label className="mb-2">Umur :</label>
-            <input className="border-2 py-2 px-3 rounded-md" type="number" name={"umur"} value={forms.umur} onChange={handleChange} />
-          </div>
-          <div className="flex flex-col mb-4">
-            <label className="mb-2">Alamat :</label>
-            <input className="border-2 py-2 px-3 rounded-md" type="text" name={"alamat"} value={forms.alamat} onChange={handleChange} />
-          </div>
-          <div className="flex flex-col">
-            <label className="mb-2">No HP :</label>
-            <input className="border-2 py-2 px-3 rounded-md" type="number" name={"no"} value={forms.no} onChange={handleChange} />
-          </div>
-        </div>
-        <button className="bg-blue-600 text-white text-sm hover:bg-blue-800 rounded-md py-2 px-3 mb-3">
-          <FontAwesomeIcon icon={faPenToSquare} /> Save Change
-        </button>
-      </form>
+          <button className="bg-blue-600 text-white text-sm hover:bg-blue-800 rounded-md py-2 px-3 mb-3">
+            <FontAwesomeIcon icon={faPenToSquare} /> Save Change
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

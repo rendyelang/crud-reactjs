@@ -5,7 +5,6 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-// import data from "../data/data";
 
 const pagination = paginationFactory({
   page: 1,
@@ -45,6 +44,7 @@ const TableComponents = (props) => {
           width: "5%",
           backgroundColor: "#444444",
           color: "#fff",
+          // fontSize: "14px",
         };
       },
       style: (cell, row, rowIndex, colIndex) => {
@@ -181,19 +181,26 @@ const TableComponents = (props) => {
         const newData = dataMhs.filter((item) => item.id !== id);
         console.log(dataMhs);
         setDataMhs(newData);
-        Swal.fire("Terhapus", "Data berhasil dihapus", "success");
+        Swal.fire({
+          title: "Data berhasil dihapus!",
+          icon: "success",
+          showCancelButton: false,
+          confirmButtonColor: "#6633FF",
+          confirmButtonText: "OK",
+          timer: 5000,
+        });
       }
     });
   };
   function butFormatter(rowContent, row) {
     return (
-      <div className="flex justify-center flex-col lg:flex-row gap-y-3">
+      <div className="flex justify-center items-center flex-col lg:flex-row gap-y-3 lg:gap-x-2">
         <Link to={"edit/" + row.id}>
-          <button className="bg-yellow-500 text-white text-sm hover:bg-yellow-600 rounded-md py-2 px-3 mr-2">
+          <button className="bg-yellow-500 text-white text-xs sm:text-sm hover:bg-yellow-600 rounded-md tombol w-fit">
             <FontAwesomeIcon icon={faEdit} /> Edit
           </button>
         </Link>
-        <button onClick={() => handleDelete(row.id)} className="bg-red-500 text-white text-sm hover:bg-red-800 rounded-md py-2 px-3">
+        <button onClick={() => handleDelete(row.id)} className="bg-red-500 text-white text-xs sm:text-sm hover:bg-red-800 rounded-md deltom w-fit">
           <FontAwesomeIcon icon={faTrash} /> Delete
         </button>
       </div>
@@ -201,12 +208,12 @@ const TableComponents = (props) => {
   }
   return (
     <div className="container py-12">
-      <Link to={"/create"}>
+      <Link className="mr-4" to={"/create"}>
         <button className="bg-blue-600 text-white text-sm hover:bg-blue-800 rounded-md py-2 px-3 mb-3">
           <FontAwesomeIcon icon={faUserPlus} /> Add User
         </button>
       </Link>
-      <BootstrapTable bootstrap4 keyField="id" data={dataMhs} columns={columns} defaultSorted={defaultSorted} pagination={pagination} />
+      <BootstrapTable className="txt" bootstrap4 keyField="id" data={dataMhs} columns={columns} defaultSorted={defaultSorted} pagination={pagination} />
     </div>
   );
 };

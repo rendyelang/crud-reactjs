@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.tombol {
+  @apply py-2 md:px-3 px-2;
+}
+
+.deltom {
+  @apply py-2 md:px-3 px-1;
+}
+
+.txt {
+  @apply text-xs sm:text-sm md:text-base;
+}
