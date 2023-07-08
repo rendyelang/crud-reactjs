@@ -2,7 +2,7 @@ import React from "react";
 
 function JumbotronComponents(props) {
   return (
-    <div className="bg-gray-200 py-12">
+    <div className="bg-gray-200 pb-12 pt-[105px]">
       <div className="container">
         <p className="mb-3 text-[52px] font-normal">{props.title}</p>
         <p className="mb-2 text-lg">

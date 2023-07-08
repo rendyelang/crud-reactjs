@@ -5,7 +5,6 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import data from "../data/data";
 
 const pagination = paginationFactory({
   page: 1,
@@ -34,7 +33,7 @@ const defaultSorted = [
 ];
 
 const TableComponents = (props) => {
-  const [dataMhs, setDataMhs] = useState(data);
+  const [dataMhs, setDataMhs] = useState(props.users);
   const columns = [
     {
       dataField: "id",
@@ -179,10 +178,13 @@ const TableComponents = (props) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        // e.preventDefault();
         const newData = dataMhs.filter((item) => item.id !== id);
-        console.log(newData);
+        console.log(dataMhs);
         setDataMhs(newData);
         Swal.fire("Terhapus", "Data berhasil dihapus", "success");
+        // const newDataMhs = newDataMhss.setDataMhs(newData);
+        // return newDataMhs;
       }
     });
   };
@@ -194,7 +196,7 @@ const TableComponents = (props) => {
             <FontAwesomeIcon icon={faEdit} /> Edit
           </button>
         </Link>
-        <button onClick={handleDelete} className="bg-red-500 text-white text-sm hover:bg-red-800 rounded-md py-2 px-3">
+        <button onClick={() => handleDelete(row.id)} className="bg-red-500 text-white text-sm hover:bg-red-800 rounded-md py-2 px-3">
           <FontAwesomeIcon icon={faTrash} /> Delete
         </button>
       </div>
@@ -207,7 +209,7 @@ const TableComponents = (props) => {
           <FontAwesomeIcon icon={faUserPlus} /> Add User
         </button>
       </Link>
-      <BootstrapTable bootstrap4 keyField="id" data={props.users} columns={columns} defaultSorted={defaultSorted} pagination={pagination} />
+      <BootstrapTable bootstrap4 keyField="id" data={dataMhs} columns={columns} defaultSorted={defaultSorted} pagination={pagination} />
     </div>
   );
 };
